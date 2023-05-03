@@ -5,7 +5,7 @@ services:
     environment:
       MONGO_DB: yolomy
     ports:
-      - 2717:27017
+      - 27017:27017
     networks:
       - yolo-services
     volumes:
@@ -22,7 +22,7 @@ services:
   yolo-backend: 
     image: salisimiyu/ronny_backend:v1
     environment:
-      MONGODB_URL: mongodb://yolo-database:27017/yolomy
+      MONGODB_URI: mongodb://yolo-database:27017/yolomy
     ports:
       - 5000:5000
     networks:
