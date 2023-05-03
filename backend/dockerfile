@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-label maintainer="RonnySali"
+LABEL maintainer="RonnySali"
 WORKDIR /app
 COPY package*.json ./
 

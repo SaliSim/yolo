@@ -1,34 +1,34 @@
 version: '1'
 services:
   yolo-database:
-   image: mongo:jammy
-   environment:
-     MONGO_DB:yolomy
-   ports:
-     -27017:27017
-    networks:
-      -yolo-netservices
-    volumes:
-      -yolo-data:/etc/backend
- yolo-client:
-   image: salisimiyu/ronny_client:v1
-   environment:
-     PORT:3000
-     PROXY_API:
-    ports:
-      -"3000:3000"
-    networks:
-      -yolo-services
- yolo-backend: 
-    image: ronnysimiyu/yolo-backend_img:v1
+    image: mongo:jammy
     environment:
-      MONGODB_URL:
+      MONGO_DB: yolomy
     ports:
-     -"5000:5000"
+      - 2717:27017
     networks:
-     -yolo-services
+      - yolo-services
+    volumes:
+      - yolo-data:/etc/backend
+  yolo-client:
+    image: salisimiyu/ronny_client:v1
+    environment:
+      PORT: 3000
+      PROXY_API: http://yolo-backend:5000/
+    ports:
+      - 3000:3000
+    networks:
+      - yolo-services
+  yolo-backend: 
+    image: salisimiyu/ronny_backend:v1
+    environment:
+      MONGODB_URL: mongodb://yolo-database:27017/yolomy
+    ports:
+      - 5000:5000
+    networks:
+      - yolo-services
 networks:
- yolo-service:
-    driver:bridge
+ yolo-services:
+    driver: bridge
 volumes:
- yolo-data
+ yolo-data:
