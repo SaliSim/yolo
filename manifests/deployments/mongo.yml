@@ -23,4 +23,15 @@ spec:
             - containerPort: 27017
           volumeMounts:
             - name: yolo-data
-              mountPath:
+              mountPath:volumeMounts:
+            - name: yolo-data
+              mountPath: /etc/data/backend
+  volumeClaimTemplates:
+    - metadata:
+        name: yolo-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
