@@ -21,4 +21,4 @@ spec:
             - name: PROXY_API
               value: "http://yolo-backend:5000/"
           ports:
-            - con
+            -containerPort: 3000
